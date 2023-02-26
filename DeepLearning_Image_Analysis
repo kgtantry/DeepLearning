@@ -1,0 +1,277 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyN3KdM0GKmzuBaiflC2kwVM",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/kgtantry/DeepLearning/blob/main/DeepLearning_Image_Analysis\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "pU8yl7p0TXMl",
+        "outputId": "244d2191-ed51-4826-b3b4-a56d1d994f11"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Name: opencv-python\n",
+            "Version: 4.6.0.66\n",
+            "Summary: Wrapper package for OpenCV python bindings.\n",
+            "Home-page: https://github.com/skvark/opencv-python\n",
+            "Author: \n",
+            "Author-email: \n",
+            "License: MIT\n",
+            "Location: /usr/local/lib/python3.8/dist-packages\n",
+            "Requires: numpy, numpy\n",
+            "Required-by: dopamine-rl, imgaug\n"
+          ]
+        }
+      ],
+      "source": [
+        "!pip show opencv-python\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install opencv-python"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "rd5Jzw9ATe_0",
+        "outputId": "67b57ead-afc0-4365-e52b-bf02b5675b40"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/\n",
+            "Requirement already satisfied: opencv-python in /usr/local/lib/python3.8/dist-packages (4.6.0.66)\n",
+            "Requirement already satisfied: numpy>=1.14.5 in /usr/local/lib/python3.8/dist-packages (from opencv-python) (1.22.4)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import cv2"
+      ],
+      "metadata": {
+        "id": "b9fgaM4sTzcz"
+      },
+      "execution_count": 4,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "! wget https://wallpapers.com/images/featured/a5u9zq0a0ymy2dug.jpg"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "hQBOKvCtUS_z",
+        "outputId": "1c59e688-5855-4f6a-d016-7c66a1d16fc3"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--2023-02-26 15:22:24--  https://wallpapers.com/images/featured/a5u9zq0a0ymy2dug.jpg\n",
+            "Resolving wallpapers.com (wallpapers.com)... 99.86.229.18, 99.86.229.56, 99.86.229.124, ...\n",
+            "Connecting to wallpapers.com (wallpapers.com)|99.86.229.18|:443... connected.\n",
+            "HTTP request sent, awaiting response... 200 OK\n",
+            "Length: unspecified [image/jpeg]\n",
+            "Saving to: ‘a5u9zq0a0ymy2dug.jpg’\n",
+            "\n",
+            "\ra5u9zq0a0ymy2dug.jp     [<=>                 ]       0  --.-KB/s               \ra5u9zq0a0ymy2dug.jp     [ <=>                ] 352.23K  --.-KB/s    in 0.006s  \n",
+            "\n",
+            "2023-02-26 15:22:24 (53.3 MB/s) - ‘a5u9zq0a0ymy2dug.jpg’ saved [360681]\n",
+            "\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "image = cv2.imread(\"a5u9zq0a0ymy2dug.jpg\")"
+      ],
+      "metadata": {
+        "id": "8jttTSaQUV-z"
+      },
+      "execution_count": 6,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "type(image)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "SI1KjSeAUifT",
+        "outputId": "f4d6a505-a057-4cfc-aa06-f7c97cf0a1de"
+      },
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "numpy.ndarray"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 7
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "image.shape"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "RoOjOYsjUmob",
+        "outputId": "3e153b7e-d17c-4489-aed2-558c99dea31b"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "(1050, 1680, 3)"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 8
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "image"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jyfDHd8_UpCD",
+        "outputId": "56ac396d-3851-4748-e9e6-f8e1681344b2"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([[[ 64,  46,  45],\n",
+              "        [ 64,  46,  45],\n",
+              "        [ 63,  45,  44],\n",
+              "        ...,\n",
+              "        [128, 160, 219],\n",
+              "        [129, 161, 220],\n",
+              "        [129, 161, 220]],\n",
+              "\n",
+              "       [[ 64,  46,  45],\n",
+              "        [ 64,  46,  45],\n",
+              "        [ 63,  45,  44],\n",
+              "        ...,\n",
+              "        [137, 169, 228],\n",
+              "        [139, 171, 230],\n",
+              "        [141, 173, 232]],\n",
+              "\n",
+              "       [[ 64,  46,  45],\n",
+              "        [ 64,  46,  45],\n",
+              "        [ 63,  45,  44],\n",
+              "        ...,\n",
+              "        [133, 166, 222],\n",
+              "        [135, 168, 224],\n",
+              "        [139, 172, 228]],\n",
+              "\n",
+              "       ...,\n",
+              "\n",
+              "       [[ 81,  95,  54],\n",
+              "        [ 81,  95,  54],\n",
+              "        [ 80,  94,  53],\n",
+              "        ...,\n",
+              "        [152, 198, 146],\n",
+              "        [158, 204, 152],\n",
+              "        [181, 227, 175]],\n",
+              "\n",
+              "       [[ 81,  95,  54],\n",
+              "        [ 77,  91,  50],\n",
+              "        [ 83,  97,  56],\n",
+              "        ...,\n",
+              "        [163, 209, 157],\n",
+              "        [163, 209, 157],\n",
+              "        [170, 216, 164]],\n",
+              "\n",
+              "       [[ 81,  95,  54],\n",
+              "        [ 77,  91,  50],\n",
+              "        [ 83,  97,  56],\n",
+              "        ...,\n",
+              "        [163, 209, 157],\n",
+              "        [163, 209, 157],\n",
+              "        [170, 216, 164]]], dtype=uint8)"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 9
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "y1gr2BqNUvys"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
